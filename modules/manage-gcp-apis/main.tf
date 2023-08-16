@@ -10,8 +10,14 @@ module "manage-project-apis" {
 
     activate_apis = var.project_apis
 
-    # Don't disable services (APIs) when the resources are destroyed
-    disable_services_on_destroy = false
+    enable_apis = true
+
+    # Disable services (APIs) when the resources are destroyed?
+    disable_services_on_destroy = var.disable_services_on_destroy
+
+    # Whether services that are enabled and which depend on this service should 
+    # also be disabled when this service is destroyed.
+    disable_dependent_services = var.disable_dependent_services
 }
 
 # We need to wait for services to "start"
