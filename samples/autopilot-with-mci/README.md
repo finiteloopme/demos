@@ -50,8 +50,8 @@ A **MultiClusterService** is a custom resource used by Multi Cluster Ingress to 
 
 ```bash
 # clone the git repo
-git clone https://github.com/finiteloopme/tf-modules-argolis
-cd tf-modules-argolis/samples/autopilot-with-mci
+git clone https://github.com/finiteloopme/demos
+cd demos/samples/autopilot-with-mci
 # Deploy Infrastructure in GCP
 # We assume the you have a GCP project
 # And you have created a GCS bucket: ${GCP_PROJECT_ID}-tf-state

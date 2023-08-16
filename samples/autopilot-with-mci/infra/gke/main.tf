@@ -36,7 +36,7 @@ resource "google_gke_hub_feature_membership" "feature_member" {
     config_sync {
       source_format = "unstructured"
       git {
-        sync_repo = "https://github.com/finiteloopme/tf-modules-argolis"
+        sync_repo = "https://github.com/finiteloopme/demos"
         sync_branch = "main"
         policy_dir = "samples/autopilot-with-mci/app/stable-diffusion"
         sync_wait_secs = "20"
