@@ -1,19 +1,28 @@
 package api
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+)
 
-func TestGetPaths(t *testing.T) {
-	apiSpec := &ApiSpec{}
-	err := apiSpec.GetSpec(TestUri)
-	if err != nil {
-		t.Fatalf("Unxpected error: %s", err)
-	}
+func loadPaths(t *testing.T) *ApiSpec {
 
-	err = apiSpec.GetPaths()
-	if err != nil {
-		t.Fatalf("Unxpected error: %s", err)
-	}
+	apiSpec := loadSpec(t)
+	apiSpec.LoadPaths()
 	if len(apiSpec.Paths) < 1 {
 		t.Fatalf("Expected the extracted paths to be more than 1.  Received: %v", len(apiSpec.Paths))
+	}
+	return apiSpec
+}
+func TestLoadPaths(t *testing.T) {
+	_ = loadPaths(t)
+}
+
+func TestGetPath(t *testing.T) {
+	apiSpec := loadPaths(t)
+	randomIdx := rand.Intn(len(apiSpec.Paths))
+	_, err := apiSpec.GetPath(apiSpec.Paths[randomIdx].Path)
+	if err != nil {
+		t.Fatalf("Unexpected error: %s", err)
 	}
 }

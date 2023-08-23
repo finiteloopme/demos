@@ -2,17 +2,20 @@ package api
 
 import "github.com/getkin/kin-openapi/openapi3"
 
+// Open API Spec
 type ApiSpec struct {
 	Api   *openapi3.T `json:"api"`
 	Uri   string      `json:"uri"`
 	Paths []Path      `json:"paths"`
 }
 
+// REST API Endpoint
 type Path struct {
 	Path       string      `json:"path"`
 	Operations []Operation `json:"operations"`
 }
 
+// REST Operation
 type OperationType int
 
 const (
@@ -23,6 +26,7 @@ const (
 	PATCH
 )
 
+// Helper function to convert OperationType into string
 func (restOperation OperationType) String() string {
 	switch restOperation {
 	case GET:
@@ -39,7 +43,9 @@ func (restOperation OperationType) String() string {
 	return "Unknown"
 }
 
+// REST method or operation
 type Operation struct {
-	Type        OperationType `json:"type"`
-	OperationID string        `json:"operationId"`
+	// Note the type is string and not OperationType
+	Type        string `json:"type"`
+	OperationID string `json:"operationId"`
 }
