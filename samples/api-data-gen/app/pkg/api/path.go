@@ -9,7 +9,7 @@ import (
 func (apiSpec *ApiSpec) LoadPaths() {
 	if apiSpec.Paths == nil {
 		for path := range apiSpec.Api.Paths {
-			restPath := Path{
+			restPath := &Path{
 				Path: path,
 			}
 			apiSpec.Paths = append(apiSpec.Paths, restPath)
@@ -33,7 +33,7 @@ func (apiSpec *ApiSpec) PrintPaths() {
 	return
 }
 
-func (apiSpec *ApiSpec) GetPath(path string) (Path, error) {
+func (apiSpec *ApiSpec) GetPath(path string) (*Path, error) {
 
 	if apiSpec.Paths == nil {
 		apiSpec.LoadPaths()
@@ -45,21 +45,21 @@ func (apiSpec *ApiSpec) GetPath(path string) (Path, error) {
 		}
 	}
 
-	return Path{}, errors.New("API Spec has no path: " + path)
+	return &Path{}, errors.New("API Spec has no path: " + path)
 }
 
-func (apiSpec *ApiSpec) AddOrUpdate(path Path) {
-	for _, _path := range apiSpec.Paths {
-		if _path.Path == _path.Path {
-			// Udpate operations on the path
-			_path.Operations = []Operation{}
-			for _, op := range path.Operations {
-				_path.Operations = append(_path.Operations, op)
-			}
-			// return after update
-			return
-		}
-	}
-	// Add the path
-	apiSpec.Paths = append(apiSpec.Paths, path)
-}
+// func (apiSpec *ApiSpec) AddOrUpdate(path Path) {
+// 	for _, _path := range apiSpec.Paths {
+// 		if _path.Path == _path.Path {
+// 			// Udpate operations on the path
+// 			_path.Operations = []Operation{}
+// 			for _, op := range path.Operations {
+// 				_path.Operations = append(_path.Operations, op)
+// 			}
+// 			// return after update
+// 			return
+// 		}
+// 	}
+// 	// Add the path
+// 	apiSpec.Paths = append(apiSpec.Paths, path)
+// }

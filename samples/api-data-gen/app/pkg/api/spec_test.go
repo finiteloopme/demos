@@ -31,7 +31,7 @@ func loadSpecDetails(t *testing.T) *ApiSpec {
 	}
 	randomIdx := rand.Intn(len(apiSpec.Paths))
 	if len(apiSpec.Paths[randomIdx].Operations) < 1 {
-		t.Fatalf("Number of operations for %s should greater than 0.  Encountered: %v", apiSpec.Paths[randomIdx].Path, len(apiSpec.Paths[randomIdx].Operations))
+		t.Fatalf("Number of operations for %s should be greater than 0.  Encountered: %v", apiSpec.Paths[randomIdx].Path, len(apiSpec.Paths[randomIdx].Operations))
 
 	}
 

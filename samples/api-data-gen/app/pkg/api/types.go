@@ -6,13 +6,13 @@ import "github.com/getkin/kin-openapi/openapi3"
 type ApiSpec struct {
 	Api   *openapi3.T `json:"api"`
 	Uri   string      `json:"uri"`
-	Paths []Path      `json:"paths"`
+	Paths []*Path     `json:"paths"`
 }
 
 // REST API Endpoint
 type Path struct {
-	Path       string      `json:"path"`
-	Operations []Operation `json:"operations"`
+	Path       string       `json:"path"`
+	Operations []*Operation `json:"operations"`
 }
 
 // REST Operation
