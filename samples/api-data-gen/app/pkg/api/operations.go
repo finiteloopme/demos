@@ -47,7 +47,6 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 			})
 		}
 	}
-	// apiSpec.AddOrUpdate(path)
 }
 
 func (apiSpec *ApiSpec) PrintAllOperations() {

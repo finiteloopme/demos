@@ -26,3 +26,8 @@ func TestGetPath(t *testing.T) {
 		t.Fatalf("Unexpected error: %s", err)
 	}
 }
+
+func TestPrintPath(t *testing.T) {
+	apiSpec := loadPaths(t)
+	apiSpec.PrintPaths()
+}

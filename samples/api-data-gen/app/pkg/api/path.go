@@ -47,19 +47,3 @@ func (apiSpec *ApiSpec) GetPath(path string) (*Path, error) {
 
 	return &Path{}, errors.New("API Spec has no path: " + path)
 }
-
-// func (apiSpec *ApiSpec) AddOrUpdate(path Path) {
-// 	for _, _path := range apiSpec.Paths {
-// 		if _path.Path == _path.Path {
-// 			// Udpate operations on the path
-// 			_path.Operations = []Operation{}
-// 			for _, op := range path.Operations {
-// 				_path.Operations = append(_path.Operations, op)
-// 			}
-// 			// return after update
-// 			return
-// 		}
-// 	}
-// 	// Add the path
-// 	apiSpec.Paths = append(apiSpec.Paths, path)
-// }

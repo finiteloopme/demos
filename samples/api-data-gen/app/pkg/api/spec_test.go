@@ -1,7 +1,9 @@
 package api
 
 import (
+	"log"
 	"math/rand"
+	"os"
 	"testing"
 )
 
@@ -13,6 +15,9 @@ func loadSpec(t *testing.T) *ApiSpec {
 	if err != nil {
 		t.Fatalf("Unxpected error: %s", err)
 	}
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
 
 	return apiSpec
 }
@@ -34,6 +39,9 @@ func loadSpecDetails(t *testing.T) *ApiSpec {
 		t.Fatalf("Number of operations for %s should be greater than 0.  Encountered: %v", apiSpec.Paths[randomIdx].Path, len(apiSpec.Paths[randomIdx].Operations))
 
 	}
+	defer func() {
+		log.SetOutput(os.Stderr)
+	}()
 
 	return apiSpec
 }

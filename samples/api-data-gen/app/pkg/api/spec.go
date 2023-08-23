@@ -11,6 +11,7 @@ func (apiSpec *ApiSpec) LoadSpec(uri string) error {
 		// Load the API spec
 		apiSpec.Api, err = util.LoadSwagger(uri)
 	}
+
 	return err
 }
 
