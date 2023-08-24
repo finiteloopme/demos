@@ -46,6 +46,21 @@ func (restOperation OperationType) String() string {
 // REST method or operation
 type Operation struct {
 	// Note the type is string and not OperationType
-	Type        string `json:"type"`
-	OperationID string `json:"operationId"`
+	Type           string    `json:"type"`
+	OperationID    string    `json:"operationId"`
+	Description    string    `json:"description"`
+	Summary        string    `json:"summary"`
+	RequestParams  []*Param  `json:"requests"`
+	RequestHeaders []*Header `json:"req-headers"`
+}
+
+type Header struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+
+type Param struct {
+	Type  string `json:"type"`
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }

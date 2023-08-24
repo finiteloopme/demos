@@ -20,30 +20,41 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        GET.String(),
 				OperationID: pathItem.Get.OperationID,
+				// Used for prompt engineering?
+				Description: pathItem.Description + ". " + pathItem.Get.Description,
+				Summary:     pathItem.Summary + ". " + pathItem.Get.Summary,
 			})
 		}
 		if pathItem.Post != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        POST.String(),
-				OperationID: pathItem.Get.OperationID,
+				OperationID: pathItem.Post.OperationID,
+				Description: pathItem.Description + ". " + pathItem.Post.Description,
+				Summary:     pathItem.Summary + ". " + pathItem.Post.Summary,
 			})
 		}
 		if pathItem.Put != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        PUT.String(),
-				OperationID: pathItem.Get.OperationID,
+				OperationID: pathItem.Put.OperationID,
+				Description: pathItem.Description + ". " + pathItem.Put.Description,
+				Summary:     pathItem.Summary + ". " + pathItem.Put.Summary,
 			})
 		}
 		if pathItem.Delete != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        DELETE.String(),
-				OperationID: pathItem.Get.OperationID,
+				OperationID: pathItem.Delete.OperationID,
+				Description: pathItem.Description + ". " + pathItem.Delete.Description,
+				Summary:     pathItem.Summary + ". " + pathItem.Delete.Summary,
 			})
 		}
 		if pathItem.Patch != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        PATCH.String(),
-				OperationID: pathItem.Get.OperationID,
+				OperationID: pathItem.Patch.OperationID,
+				Description: pathItem.Description + ". " + pathItem.Patch.Description,
+				Summary:     pathItem.Summary + ". " + pathItem.Patch.Summary,
 			})
 		}
 	}
