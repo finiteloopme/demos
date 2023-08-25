@@ -3,13 +3,14 @@ package api
 import (
 	"errors"
 
+	"github.com/finiteloopme/demos/samples/api-data-gen/app/pkg/types"
 	"github.com/finiteloopme/goutils/pkg/log"
 )
 
 func (apiSpec *ApiSpec) LoadPaths() {
 	if apiSpec.Paths == nil {
 		for path := range apiSpec.Api.Paths {
-			restPath := &Path{
+			restPath := &types.Path{
 				Path: path,
 			}
 			apiSpec.Paths = append(apiSpec.Paths, restPath)
@@ -33,7 +34,7 @@ func (apiSpec *ApiSpec) PrintPaths() {
 	return
 }
 
-func (apiSpec *ApiSpec) GetPath(path string) (*Path, error) {
+func (apiSpec *ApiSpec) GetPath(path string) (*types.Path, error) {
 
 	if apiSpec.Paths == nil {
 		apiSpec.LoadPaths()
@@ -45,7 +46,7 @@ func (apiSpec *ApiSpec) GetPath(path string) (*Path, error) {
 		}
 	}
 
-	return &Path{}, errors.New("API Spec has no path: " + path)
+	return &types.Path{}, errors.New("API Spec has no path: " + path)
 }
 
 func (apiSpec *ApiSpec) PrintPath(path string) {

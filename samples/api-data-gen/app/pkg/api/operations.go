@@ -1,6 +1,9 @@
 package api
 
-import "github.com/finiteloopme/goutils/pkg/log"
+import (
+	"github.com/finiteloopme/demos/samples/api-data-gen/app/pkg/types"
+	"github.com/finiteloopme/goutils/pkg/log"
+)
 
 func (apiSpec *ApiSpec) LoadAllOperations() {
 	for _, path := range apiSpec.Paths {
@@ -17,8 +20,8 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 	if err == nil {
 		pathItem := apiSpec.Api.Paths.Find(path.Path)
 		if pathItem.Get != nil {
-			path.Operations = append(path.Operations, &Operation{
-				Type:        GET.String(),
+			path.Operations = append(path.Operations, &types.Operation{
+				Type:        types.GET.String(),
 				OperationID: pathItem.Get.OperationID,
 				// Used for prompt engineering?
 				Description: pathItem.Get.Description,
@@ -26,32 +29,32 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 			})
 		}
 		if pathItem.Post != nil {
-			path.Operations = append(path.Operations, &Operation{
-				Type:        POST.String(),
+			path.Operations = append(path.Operations, &types.Operation{
+				Type:        types.POST.String(),
 				OperationID: pathItem.Post.OperationID,
 				Description: pathItem.Post.Description,
 				Summary:     pathItem.Post.Summary,
 			})
 		}
 		if pathItem.Put != nil {
-			path.Operations = append(path.Operations, &Operation{
-				Type:        PUT.String(),
+			path.Operations = append(path.Operations, &types.Operation{
+				Type:        types.PUT.String(),
 				OperationID: pathItem.Put.OperationID,
 				Description: pathItem.Put.Description,
 				Summary:     pathItem.Put.Summary,
 			})
 		}
 		if pathItem.Delete != nil {
-			path.Operations = append(path.Operations, &Operation{
-				Type:        DELETE.String(),
+			path.Operations = append(path.Operations, &types.Operation{
+				Type:        types.DELETE.String(),
 				OperationID: pathItem.Delete.OperationID,
 				Description: pathItem.Delete.Description,
 				Summary:     pathItem.Delete.Summary,
 			})
 		}
 		if pathItem.Patch != nil {
-			path.Operations = append(path.Operations, &Operation{
-				Type:        PATCH.String(),
+			path.Operations = append(path.Operations, &types.Operation{
+				Type:        types.PATCH.String(),
 				OperationID: pathItem.Patch.OperationID,
 				Description: pathItem.Patch.Description,
 				Summary:     pathItem.Patch.Summary,
