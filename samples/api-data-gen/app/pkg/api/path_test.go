@@ -27,7 +27,13 @@ func TestGetPath(t *testing.T) {
 	}
 }
 
-func TestPrintPath(t *testing.T) {
+func TestPrintPaths(t *testing.T) {
 	apiSpec := loadPaths(t)
 	apiSpec.PrintPaths()
+}
+
+func TestPrintPath(t *testing.T) {
+	apiSpec := loadPaths(t)
+	randomIdx := rand.Intn(len(apiSpec.Paths))
+	apiSpec.PrintPath(apiSpec.Paths[randomIdx].Path)
 }

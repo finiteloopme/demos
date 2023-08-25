@@ -21,40 +21,40 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 				Type:        GET.String(),
 				OperationID: pathItem.Get.OperationID,
 				// Used for prompt engineering?
-				Description: pathItem.Description + ". " + pathItem.Get.Description,
-				Summary:     pathItem.Summary + ". " + pathItem.Get.Summary,
+				Description: pathItem.Get.Description,
+				Summary:     pathItem.Get.Summary,
 			})
 		}
 		if pathItem.Post != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        POST.String(),
 				OperationID: pathItem.Post.OperationID,
-				Description: pathItem.Description + ". " + pathItem.Post.Description,
-				Summary:     pathItem.Summary + ". " + pathItem.Post.Summary,
+				Description: pathItem.Post.Description,
+				Summary:     pathItem.Post.Summary,
 			})
 		}
 		if pathItem.Put != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        PUT.String(),
 				OperationID: pathItem.Put.OperationID,
-				Description: pathItem.Description + ". " + pathItem.Put.Description,
-				Summary:     pathItem.Summary + ". " + pathItem.Put.Summary,
+				Description: pathItem.Put.Description,
+				Summary:     pathItem.Put.Summary,
 			})
 		}
 		if pathItem.Delete != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        DELETE.String(),
 				OperationID: pathItem.Delete.OperationID,
-				Description: pathItem.Description + ". " + pathItem.Delete.Description,
-				Summary:     pathItem.Summary + ". " + pathItem.Delete.Summary,
+				Description: pathItem.Delete.Description,
+				Summary:     pathItem.Delete.Summary,
 			})
 		}
 		if pathItem.Patch != nil {
 			path.Operations = append(path.Operations, &Operation{
 				Type:        PATCH.String(),
 				OperationID: pathItem.Patch.OperationID,
-				Description: pathItem.Description + ". " + pathItem.Patch.Description,
-				Summary:     pathItem.Summary + ". " + pathItem.Patch.Summary,
+				Description: pathItem.Patch.Description,
+				Summary:     pathItem.Patch.Summary,
 			})
 		}
 	}
@@ -62,14 +62,17 @@ func (apiSpec *ApiSpec) LoadOperations(pathName string) {
 
 func (apiSpec *ApiSpec) PrintAllOperations() {
 	for _, path := range apiSpec.Paths {
-		log.Info(path.Path)
-		apiSpec.LoadOperations(path.Path)
+		apiSpec.PrintOperations(path.Path)
 	}
 }
+
 func (apiSpec *ApiSpec) PrintOperations(pathName string) {
 	path, _ := apiSpec.GetPath(pathName)
+	apiSpec.PrintPath(pathName)
 	for _, ops := range path.Operations {
-		log.Info("\tMethod: " + ops.Type)
-		log.Info("\tOperationID: " + ops.OperationID)
+		log.Info("	Method: " + ops.Type)
+		log.Info("	OperationID: " + ops.OperationID)
+		log.Info("	Summary: " + ops.Summary)
+		log.Info("	Description: " + ops.Description)
 	}
 }

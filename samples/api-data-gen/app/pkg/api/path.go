@@ -47,3 +47,10 @@ func (apiSpec *ApiSpec) GetPath(path string) (*Path, error) {
 
 	return &Path{}, errors.New("API Spec has no path: " + path)
 }
+
+func (apiSpec *ApiSpec) PrintPath(path string) {
+	_path, err := apiSpec.GetPath(path)
+	if err == nil {
+		log.Info(_path.Path)
+	}
+}
