@@ -20,10 +20,4 @@ module "manage-project-apis" {
     disable_dependent_services = var.disable_dependent_services
 }
 
-# We need to wait for services to "start"
-resource "time_sleep" "wait_for_gcp_services" {
-  create_duration = var.wait_time
-
-  depends_on = [module.manage-project-apis]
-}
 
