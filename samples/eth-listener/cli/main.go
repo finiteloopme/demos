@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"os"
 	"time"
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -16,8 +17,8 @@ type Block struct {
 func main() {
 	log.Info("In main")
 	// Connect the client.
-	_url := "ws.awm4nzzwx9ogrvhmbi1ezkz5j.blockchainnodeengine.com"
-	_apiKey := "AIzaSyDbqUu36nne_ueHOqje7SmsFHbM_bItOaQ"
+	_url := os.Getenv("WS_URL")
+	_apiKey := os.Getenv("API_KEY")
 	client, err := rpc.Dial("wss://" + _url + "?key=" + _apiKey)
 	if err != nil {
 		log.Fatal(err)
@@ -36,7 +37,7 @@ func main() {
 // subscribeBlocks runs in its own goroutine and maintains
 // a subscription for new blocks.
 func subscribeBlocks(client *rpc.Client, subch chan Block) {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 
 	// Subscribe to new blocks.
