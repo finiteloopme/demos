@@ -28,3 +28,7 @@ override.tf.json
 **/.terraform.lock.hcl
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+modules/workstation
+samples/impersonate
+samples/local-to-private-cloud-sql
+gcp-org

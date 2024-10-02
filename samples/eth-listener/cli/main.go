@@ -18,8 +18,9 @@ func main() {
 	log.Info("In main")
 	// Connect the client.
 	_url := os.Getenv("WS_URL")
-	_apiKey := os.Getenv("API_KEY")
-	client, err := rpc.Dial("wss://" + _url + "?key=" + _apiKey)
+	_apiKey := "test" //os.Getenv("API_KEY")
+	// client, err := rpc.Dial("wss://" + _url + "?key=" + _apiKey)
+	client, err := rpc.DialWebsocket(context.Background(), "wss://"+_url+"?key="+_apiKey, "*")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,20 +38,22 @@ func main() {
 // subscribeBlocks runs in its own goroutine and maintains
 // a subscription for new blocks.
 func subscribeBlocks(client *rpc.Client, subch chan Block) {
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
 	// Subscribe to new blocks.
-	_, err := client.EthSubscribe(ctx, subch, "newHeads")
-	if err != nil {
-		log.Info("subscribe error:" + err.Error())
-		return
-	}
+	// clientSub, err := client.EthSubscribe(ctx, subch, "newHeads")
+	// if err != nil {
+	// 	log.Info("subscribe error:" + err.Error())
+	// 	return
+	// }
+
+	// clientSub.
 
 	// The connection is established now.
 	// Update the channel with the current block.
 	var lastBlock Block
-	err = client.CallContext(ctx, &lastBlock, "eth_getBlockByNumber", "latest", false)
+	err := client.CallContext(ctx, &lastBlock, "eth_getBlockByNumber", "latest", false)
 	if err != nil {
 		log.Info("can't get latest block:" + err.Error())
 		return
