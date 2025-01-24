@@ -14,7 +14,7 @@ module "default-network" {
     network_name    = var.network_name
     description     = "Default Network"
     routing_mode    = "GLOBAL"
-    auto_create_subnetworks = true
+    auto_create_subnetworks = var.auto_create_subnetworks
 }
 
 # Create Firewall rule to allow SSH, HTTPs, HTTP
